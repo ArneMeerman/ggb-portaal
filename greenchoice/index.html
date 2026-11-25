@@ -6,67 +6,77 @@
 <meta name="robots" content="noindex, nofollow">
 <title>Kies jouw kerstpakket</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Urbanist:wght@600;700&family=Public+Sans:wght@400;500;600&display=swap">
 <style>
   :root {
-    --ink: #1c2b25; --paper: #f4f5f3; --panel: #ffffff;
-    --groen: #1d6b4f; --donker: #0f3d2e; --lav: #e1c3f9;
-    --line: rgba(28,43,37,0.14); --muted: #5f6b65; --fout: #a3261d;
+    --ink: #0c1c14; --paper: #f4f8f6; --panel: #ffffff;
+    --forest: #33512e; --mint-licht: #d6e9dc; --lav: #e1c3fa; --lav-licht: #f0e2fc;
+    --muted: #4b5951; --veldrand: #6f7c75; --line: #cdd7d1; --fout: #a3261d;
+    --kop: 'Urbanist', system-ui, sans-serif; --tekst: 'Public Sans', system-ui, sans-serif;
   }
   * { box-sizing: border-box; }
-  body { margin: 0; background: var(--paper); color: var(--ink); font-family: 'IBM Plex Sans', system-ui, sans-serif; line-height: 1.55;
-    padding: 48px max(20px, calc((100% - 1040px) / 2 + 20px)) 56px; }
-  .brandline { display: flex; align-items: center; gap: 10px; font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 28px; }
-  .brandline::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--groen); }
-  h1 { font-family: 'IBM Plex Sans Condensed', sans-serif; font-weight: 700; font-size: clamp(2.1rem, 5vw, 3.3rem); line-height: 1.05; margin: 0 0 .7rem; color: var(--ink); }
-  .intro { max-width: 40rem; color: var(--muted); font-size: 1.1rem; margin: 0 0 2.2rem; }
+  [hidden] { display: none !important; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--tekst); font-size: 1.0625rem; line-height: 1.55;
+    padding: 36px max(20px, calc((100% - 1040px) / 2 + 20px)) 56px; }
+  .logos { display: flex; align-items: center; gap: 22px; margin-bottom: 2.2rem; flex-wrap: wrap; }
+  .logos img { display: block; height: 72px; width: auto; }
+  .logos .kruis { width: 1px; height: 52px; background: var(--line); }
+  h1 { font-family: var(--kop); font-weight: 700; font-size: clamp(2.1rem, 5vw, 3.1rem); line-height: 1.05; margin: 0 0 .8rem; color: var(--ink); }
+  h2 { font-family: var(--kop); font-weight: 700; line-height: 1.15; }
+  .intro { max-width: 40rem; color: var(--muted); font-size: 1.125rem; margin: 0 0 2.2rem; }
 
-  .gate { max-width: 30rem; background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 1.4rem 1.5rem; }
+  .gate { max-width: 30rem; background: var(--panel); border: 1px solid var(--line); border-radius: .5rem; padding: 1.4rem 1.5rem; }
   .gate label, .veld label { display: block; font-weight: 600; margin-bottom: .35rem; }
-  input[type=text], input[type=email], textarea { width: 100%; font: inherit; padding: .72rem .8rem; border: 1.5px solid var(--line); border-radius: 5px; background: #fff; color: var(--ink); }
-  input:focus, textarea:focus { outline: 3px solid var(--lav); border-color: var(--donker); }
-  .melding { color: var(--fout); font-weight: 600; min-height: 1.4em; margin: .5rem 0 0; }
-  button { font: inherit; font-weight: 600; cursor: pointer; }
-  .knop { background: var(--donker); color: #fff; border: 0; border-radius: 5px; padding: .8rem 1.4rem; }
-  .knop:hover { background: var(--groen); }
+  input[type=text], input[type=email], textarea { width: 100%; font: inherit; min-height: 48px; padding: .7rem .85rem; border: 2px solid var(--veldrand); border-radius: .5rem; background: #fff; color: var(--ink); }
+  textarea { min-height: 84px; }
+  input:focus-visible, textarea:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px solid var(--forest); outline-offset: 3px; }
+  .melding { color: var(--fout); font-weight: 600; font-size: .9375rem; min-height: 1.4em; margin: .5rem 0 0; }
+  button { font: inherit; font-size: 1rem; font-weight: 600; cursor: pointer; min-height: 48px; }
+  .knop { background: var(--forest); color: #fff; border: 0; border-radius: .5rem; padding: .8rem 1.5rem; }
+  .knop:hover { background: var(--ink); }
   .knop[disabled] { opacity: .6; cursor: wait; }
 
   .cards { display: grid; gap: 22px; grid-template-columns: repeat(auto-fit, minmax(min(290px, 100%), 1fr)); align-items: start; }
-  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; box-shadow: 0 1px 3px rgba(15,61,46,.07); transition: border-color .2s, box-shadow .2s, opacity .2s; }
-  .card.selected { border-color: var(--donker); box-shadow: 0 0 0 3px var(--lav); }
-  .card.dimmed { opacity: .55; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: .75rem; overflow: hidden; transition: border-color .2s, box-shadow .2s, opacity .2s; }
+  .card.selected { border-color: var(--forest); box-shadow: 0 0 0 3px var(--lav); }
+  .card.dimmed { opacity: .6; }
   .foto { aspect-ratio: 3/2; background: var(--lav); display: block; width: 100%; object-fit: cover; }
   .body { padding: 1.1rem 1.25rem 1.3rem; display: flex; flex-direction: column; gap: .5rem; }
-  .label { font-family: 'IBM Plex Mono', monospace; font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; color: var(--groen); }
-  .naam { font-family: 'IBM Plex Sans Condensed', sans-serif; font-weight: 700; font-size: 1.55rem; line-height: 1.15; margin: 0; }
-  .kort { margin: 0; color: var(--muted); }
-  details { border-top: 1px solid var(--line); padding-top: .6rem; font-size: .95rem; }
-  summary { cursor: pointer; font-weight: 600; color: var(--groen); }
+  .label { font-size: .8125rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 600; color: var(--forest); }
+  .naam { font-size: 1.5rem; margin: 0; }
+  .kort { margin: 0; color: var(--muted); font-size: .9375rem; }
+  details { border-top: 1px solid var(--line); padding-top: .6rem; font-size: .9375rem; }
+  summary { cursor: pointer; font-weight: 600; color: var(--forest); min-height: 32px; }
   details ul { margin: .5rem 0 0; padding-left: 1.1rem; }
-  .choose { margin-top: .4rem; width: 100%; background: #fff; color: var(--donker); border: 1.5px solid var(--donker); border-radius: 5px; padding: .75rem 1rem; }
-  .choose:hover { background: var(--lav); }
-  .selected .choose { background: var(--donker); color: #fff; }
+  .choose { margin-top: .4rem; width: 100%; background: #fff; color: var(--ink); border: 2px solid var(--forest); border-radius: .5rem; padding: .75rem 1rem; }
+  .choose:hover { background: var(--mint-licht); }
+  .selected .choose { background: var(--forest); color: #fff; }
 
   .formulier { display: none; margin-top: .9rem; padding-top: 1rem; border-top: 1px solid var(--line); }
   .selected .formulier { display: block; }
   .rij { display: grid; gap: .8rem; grid-template-columns: 1fr 1fr; }
   .veld { margin-bottom: .8rem; }
-  .klein { font-size: .85rem; color: var(--muted); margin: .2rem 0 .8rem; }
-  .klaar { display: none; background: var(--lav); border-radius: 6px; padding: 1.2rem 1.3rem; font-size: 1.05rem; margin-top: .9rem; }
+  .klein { font-size: .9375rem; color: var(--muted); margin: .2rem 0 .8rem; }
+  .klaar { display: none; background: var(--lav-licht); border-radius: .5rem; padding: 1.2rem 1.3rem; margin-top: .9rem; }
   .confirmed .klaar { display: block; }
   .confirmed .formulier { display: none; }
-  .voet { margin-top: 2.5rem; padding-top: 1rem; border-top: 1px solid var(--line); font-family: 'IBM Plex Mono', monospace; font-size: .8rem; color: var(--muted); }
-  @media (max-width: 480px) { .rij { grid-template-columns: 1fr; } }
+  .voet { margin-top: 2.5rem; padding-top: 1rem; border-top: 1px solid var(--line); font-size: .9375rem; color: var(--muted); }
+  @media (max-width: 480px) { .rij { grid-template-columns: 1fr; } .logos img { height: 56px; } }
 </style>
 </head>
 <body>
-<div class="brandline">The Green Gift Box &times; Greenchoice</div>
+<div class="logos">
+  <img src="img/logo-ggb.svg" alt="GreenGiftBox">
+  <span class="kruis" aria-hidden="true"></span>
+  <img src="img/logo-greenchoice.png" alt="Greenchoice">
+</div>
 <h1>Kies jouw kerstpakket</h1>
 <p class="intro">Kies hieronder het pakket dat het best bij je past. Vul je adres in en wij bezorgen het bij je thuis.</p>
 
 <form class="gate" id="gate-form" novalidate>
-  <label for="gate-email">Wat is je zakelijke e-mailadres?</label>
-  <input type="email" id="gate-email" autocomplete="email" inputmode="email">
+  <label for="gate-code">Log in met je code</label>
+  <input type="text" id="gate-code" autocomplete="off" autocapitalize="characters" spellcheck="false">
+  <p class="klein">Je vindt de code in de mail waarmee je voor dit pakket hebt gekozen.</p>
   <p class="melding" id="gate-melding" role="alert"></p>
   <button class="knop" id="gate-knop" type="submit">Verder</button>
 </form>
@@ -152,27 +162,27 @@
   const EP = 'https://arnemeerman--kledingportaal-inzendingen-web.us-east.modal.run';
   const KLANT = 'greenchoice';
   const MAIL = 'info@greengiftbox.nl';
-  let MIJN_EMAIL = '';
+  let MIJN_CODE = '';
 
   document.getElementById('gate-form').addEventListener('submit', async (ev) => {
     ev.preventDefault();
     const knop = document.getElementById('gate-knop'), meld = document.getElementById('gate-melding');
-    const email = document.getElementById('gate-email').value.trim().toLowerCase();
+    const code = document.getElementById('gate-code').value.replace(/\s+/g, '').toUpperCase();
     knop.disabled = true; meld.textContent = '';
     try {
-      const r = await fetch(EP + '/controle/' + KLANT, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email }) });
+      const r = await fetch(EP + '/controle/' + KLANT, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ code }) });
       if (!r.ok) throw new Error('status ' + r.status);
       const { status } = await r.json();
       if (status === 'nieuw') {
-        MIJN_EMAIL = email;
+        MIJN_CODE = code;
         document.getElementById('gate-form').hidden = true;
         document.getElementById('cards').hidden = false;
       } else if (status === 'al_besteld') {
-        meld.textContent = 'Met dit e-mailadres is al een keuze doorgegeven. Een tweede keer kan niet. Klopt dat niet? Mail ' + MAIL + '.';
+        meld.textContent = 'Met deze code is al een keuze doorgegeven. Een tweede keer kan niet. Klopt dat niet? Mail ' + MAIL + '.';
       } else if (status === 'niet_toegestaan') {
-        meld.textContent = 'Dit e-mailadres staat niet op de lijst. Probeer je zakelijke adres, of mail ' + MAIL + '.';
+        meld.textContent = 'Deze code kennen we niet. Controleer de code uit je mail, of mail ' + MAIL + '.';
       } else {
-        meld.textContent = 'Dat is geen geldig e-mailadres.';
+        meld.textContent = 'Vul je code in. Die bestaat uit letters en cijfers.';
       }
     } catch (err) {
       meld.textContent = 'Dat ging niet goed. Check je internetverbinding en probeer het nog eens.';
@@ -211,12 +221,12 @@
       try {
         const resp = await fetch(EP + '/inzending/' + KLANT, {
           method: 'POST', headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ naam: voornaam + ' ' + achternaam, email: MIJN_EMAIL, model, straat, postcode, plaats, opmerking: v('opmerking') }),
+          body: JSON.stringify({ naam: voornaam + ' ' + achternaam, code: MIJN_CODE, model, straat, postcode, plaats, opmerking: v('opmerking') }),
         });
-        if (resp.status === 409) { meld.textContent = 'Met dit e-mailadres is al een keuze doorgegeven. Een tweede keer kan niet.'; knop.textContent = 'Al besteld'; return; }
+        if (resp.status === 409) { meld.textContent = 'Met deze code is al een keuze doorgegeven. Een tweede keer kan niet.'; knop.textContent = 'Al besteld'; return; }
         if (!resp.ok) throw new Error('status ' + resp.status);
         document.querySelectorAll('.card').forEach((c) => { if (c !== card) c.classList.add('dimmed'); c.querySelector('.choose').disabled = true; });
-        klaar.textContent = 'Bedankt, ' + voornaam + '! Je keuze (' + model + ') is doorgegeven. We bezorgen het pakket op ' + straat + ', ' + postcode + ' ' + plaats + '.';
+        klaar.textContent = 'Bedankt, ' + voornaam + '. Je keuze (' + model + ') is doorgegeven. We bezorgen het pakket op ' + straat + ', ' + postcode + ' ' + plaats + '.';
         card.classList.add('confirmed');
       } catch (err) {
         knop.disabled = false; knop.textContent = 'Opnieuw proberen';
